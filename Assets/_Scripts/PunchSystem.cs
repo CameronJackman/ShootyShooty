@@ -60,7 +60,7 @@ public class PunchSystem : MonoBehaviour
                 
                 currentActiveTarget.SetActive(false);
                 StopAllCoroutines();
-                randomPopupTime = Random.Range(1, 61);
+                randomPopupTime = Random.Range(20, 80);
                 isPunched = true;
                 boxCol.enabled = false;
                 

@@ -7,6 +7,7 @@ TagManager:
   - bullet
   - gun
   - fist
+  - cart
   layers:
   - Default
   - TransparentFX
