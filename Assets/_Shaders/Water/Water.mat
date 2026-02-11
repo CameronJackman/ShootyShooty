@@ -39,15 +39,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Distance: 1.78
+    - _Distance: 22.8
     - _FoamAmount: 4
-    - _FoamScale: 40
+    - _FoamScale: 17.38
     - _FoamSpeed: 0.01
-    - _HeightFrequency: 500
+    - _HeightFrequency: 496.51
     - _Normal_Strength: 3.6
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Refraction_Strength: 100
+    - _Refraction_Strength: 123.7
     - _Smoothness: 1.81
     - _Speed: 0.25
     - _WaterSpeed: 0.1
