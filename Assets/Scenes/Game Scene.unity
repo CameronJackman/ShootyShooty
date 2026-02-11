@@ -16689,7 +16689,7 @@ Transform:
   m_GameObject: {fileID: 892728931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.70710707, z: 0, w: 0.70710653}
-  m_LocalPosition: {x: 0.09000015, y: 0, z: 52.859}
+  m_LocalPosition: {x: 0.09000015, y: 0, z: 53.238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22497,7 +22497,7 @@ Transform:
   m_GameObject: {fileID: 1192986092}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 8.079998}
+  m_LocalPosition: {x: -13.19, y: 0.8, z: 8.08}
   m_LocalScale: {x: 1, y: 1, z: 0.45299}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22518,8 +22518,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leverAnimator: {fileID: 1696515409}
-  isLeft: 1
-  canBeSwitched: 1
+  isLeft: 0
+  canBeSwitched: 0
 --- !u!65 &1192986095
 BoxCollider:
   m_ObjectHideFlags: 0
