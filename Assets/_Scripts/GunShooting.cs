@@ -11,13 +11,22 @@ public class GunShooting : MonoBehaviour
 
     public int bulletSpeed;
 
+    private GameMan gameManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
-        grabInteractable.activated.AddListener(x => Shoot());
+        gameManager = FindAnyObjectByType<GameMan>();
 
+        if (gameManager.isVr)
+        {
+            XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
+            grabInteractable.activated.AddListener(x => Shoot());
+        }
+
+        
+        
     }
 
     public void Shoot()
@@ -36,7 +45,13 @@ public class GunShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!gameManager.isVr)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
+        }
     }
 
 

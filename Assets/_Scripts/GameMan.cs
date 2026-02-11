@@ -13,6 +13,8 @@ public class GameMan : MonoBehaviour
     public TMP_Text TimeElapTxt,
                     pointsTxt;
 
+    [HideInInspector] public bool isVr;
+
 
     // Start is called before the first frame update
     void Start()
