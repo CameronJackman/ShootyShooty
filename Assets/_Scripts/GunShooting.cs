@@ -19,11 +19,9 @@ public class GunShooting : MonoBehaviour
     {
         gameManager = FindAnyObjectByType<GameMan>();
 
-        if (gameManager.isVr)
-        {
             XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
             grabInteractable.activated.AddListener(x => Shoot());
-        }
+        
 
         
         
