@@ -12,14 +12,17 @@ public class PunchSystem : MonoBehaviour
     int randomPopupTime = 3;
     private GameObject currentActiveTarget;
     private BoxCollider boxCol;
+    float j = 0f;
+    private GameMan gameManager;
+
+
+
     // Start is called before the first frame update
-
-
-    
     void Start()
     {
         boxCol = this.gameObject.GetComponent<BoxCollider>();
         boxCol.enabled = false;
+        gameManager = FindAnyObjectByType<GameMan>();
     }
 
     // Update is called once per frame
@@ -45,6 +48,14 @@ public class PunchSystem : MonoBehaviour
         currentActiveTarget.SetActive(true);        
         boxCol.enabled = true;
         isPunched = false;
+        
+        j += Time.deltaTime;
+        if (j >= 1.5f)
+        {
+            //minus 10 points 
+            gameManager.points -= 10;
+            j = 0f;
+        }
         
 
     }

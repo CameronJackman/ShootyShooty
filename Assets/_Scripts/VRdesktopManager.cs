@@ -12,7 +12,7 @@ public class VRdesktopManager : MonoBehaviour
     private GameObject activePlayer;
     private GameMan gameManager;
 
-    private void Awake()
+    void Start()
     {
         if (VRSelectMenu != null)
         {
@@ -66,12 +66,13 @@ public class VRdesktopManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
     }
+    public void DisableCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
   
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
