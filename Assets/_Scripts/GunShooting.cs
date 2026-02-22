@@ -13,6 +13,8 @@ public class GunShooting : MonoBehaviour
 
     private GameMan gameManager;
 
+    private Renderer bulletRenderer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +35,10 @@ public class GunShooting : MonoBehaviour
         {
 
             GameObject newBullet = Instantiate(bulletPrefab, gunBarrel.transform.position, gunBarrel.transform.rotation);
-            newBullet.GetComponent<Rigidbody>().AddForce(gunBarrel.transform.forward * bulletSpeed);
 
+            bulletRenderer = newBullet.GetComponent<Renderer>();
+            bulletRenderer.material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.4f, 1f);
+            newBullet.GetComponent<Rigidbody>().AddForce(gunBarrel.transform.forward * bulletSpeed);
             Destroy(newBullet, 5f);
         }
     }
