@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using JetBrains.Annotations;
 
 
 public class MovementSystem : MonoBehaviour
@@ -41,9 +42,12 @@ public class MovementSystem : MonoBehaviour
     private bool useLeftTrack;
     private float distancePercentage = 0f;
     private float activationRadius = 0.5f;
+    [Header("Objects Set Active Once Point Reached Switchable")]
+    public GameObject[] objectsToActLeft;
+    public GameObject[] objectsToActRight;
 
-    
-    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,16 +65,16 @@ public class MovementSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         //Switchable activation check
 
-        if(Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius && trackType == type.switchable)
+        if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius && trackType == type.switchable)
         {
             if (switchButton != null)
             {
                 switchButton.canBeSwitched = false;
             }
-            
+
         }
 
 
@@ -88,54 +92,74 @@ public class MovementSystem : MonoBehaviour
         }
 
         //Switchable Movement
-        else if (startMoving && trackType == type.switchable && waitBeforeMoving == false) 
+        else if (startMoving && trackType == type.switchable && waitBeforeMoving == false)
         {
-            
+
             if (switchButton != null)
             {
-            useLeftTrack = switchButton.isLeft;
+                useLeftTrack = switchButton.isLeft;
 
-            if (useLeftTrack)
+                if (useLeftTrack)
                 {
                     SwithcableTrack(splineContainerLeft);
                 }
-            else if (!useLeftTrack)
+                else if (!useLeftTrack)
                 {
                     SwithcableTrack(splineContainerRight);
                 }
             }
         }
-        
+
 
         //if you want to wait before moving
-        if(waitBeforeMoving && Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+        if (waitBeforeMoving && Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
         {
             StartCoroutine(waitBeforeStartMoving());
         }
 
         //Objects set Active When Near Point
-        
+
         //activate & Deactivates objects when reached next point
-        if(objectsToActivate.Length > 0)
+        if (objectsToActivate.Length > 0 && trackType == type.linear)
         {
             if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+            {
+                foreach (GameObject obj in objectsToActivate)
                 {
-                    foreach (GameObject obj in objectsToActivate)
-                    {
-                        obj.SetActive(true);
-                    }         
+                    obj.SetActive(true);
                 }
+            }
             if (Vector3.Distance(cart.transform.position, nextPosition.transform.position) <= activationRadius && trackType == type.linear)
             {
                 foreach (GameObject obj in objectsToActivate)
-                    {
-                        obj.SetActive(false);
-                    }
+                {
+                    obj.SetActive(false);
+                }
             }
-        }      
-}
+        }
+        else if (objectsToActLeft.Length > 0 && trackType == type.switchable && useLeftTrack)
+        {
+            if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+            {
+                foreach (GameObject obj in objectsToActLeft)
+                {
+                    obj.SetActive(true);
+                }
+            }
+            else if (objectsToActRight.Length > 0 && trackType == type.switchable && !useLeftTrack)
+            {
+                if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+                {
+                    foreach (GameObject obj in objectsToActRight)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+            }
+        }
+    }
 
-private IEnumerator waitBeforeStartMoving()
+    private IEnumerator waitBeforeStartMoving()
     {
         yield return new WaitForSeconds(amountOfTimeWaiting);
         waitBeforeMoving = false;
