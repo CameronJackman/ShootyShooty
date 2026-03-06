@@ -59,7 +59,7 @@ public class MovementSystem : MonoBehaviour
             MoveCartToNext();
         }
 
-        
+
     }
 
     // Update is called once per frame
@@ -146,18 +146,19 @@ public class MovementSystem : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
-            else if (objectsToActRight.Length > 0 && trackType == type.switchable && !useLeftTrack)
+
+        }
+        else if (objectsToActRight.Length > 0 && trackType == type.switchable && !useLeftTrack)
+        {
+            if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
             {
-                if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+                foreach (GameObject obj in objectsToActRight)
                 {
-                    foreach (GameObject obj in objectsToActRight)
-                    {
-                        obj.SetActive(true);
-                    }
+                    obj.SetActive(true);
                 }
             }
         }
-    }
+    } 
 
     private IEnumerator waitBeforeStartMoving()
     {
