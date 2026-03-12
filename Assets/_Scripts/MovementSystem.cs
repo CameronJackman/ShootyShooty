@@ -137,24 +137,40 @@ public class MovementSystem : MonoBehaviour
                 }
             }
         }
-        else if (objectsToActLeft.Length > 0 && trackType == type.switchable && useLeftTrack)
+        else if (objectsToActLeft.Length > 0 && trackType == type.switchable && switchButton.isLeft)
         {
-            if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+            if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius && switchButton.isLeft)
             {
+                Debug.Log("Left Active");
                 foreach (GameObject obj in objectsToActLeft)
                 {
                     obj.SetActive(true);
                 }
             }
+            if (Vector3.Distance(cart.transform.position, nextPositionLeft.transform.position) <= activationRadius && trackType == type.switchable)
+            {
+                foreach (GameObject obj in objectsToActLeft)
+                {
+                    obj.SetActive(false);
+                }
+            }
 
         }
-        else if (objectsToActRight.Length > 0 && trackType == type.switchable && !useLeftTrack)
+        else if (objectsToActRight.Length > 0 && trackType == type.switchable && !switchButton.isLeft)
         {
-            if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius)
+            if (Vector3.Distance(cart.transform.position, this.transform.position) <= activationRadius && !switchButton.isLeft)
             {
+                Debug.Log("Right Active");
                 foreach (GameObject obj in objectsToActRight)
                 {
                     obj.SetActive(true);
+                }
+            }
+            if (Vector3.Distance(cart.transform.position, nextPositionRight.transform.position) <= activationRadius && trackType == type.switchable)
+            {
+                foreach (GameObject obj in objectsToActRight)
+                {
+                    obj.SetActive(false);
                 }
             }
         }
