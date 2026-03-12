@@ -39,7 +39,7 @@ public class MovementSystem : MonoBehaviour
     public SplineContainer splineContainerRight;
     public GameObject nextPositionRight;
     public SwitchButton switchButton;
-    private bool useLeftTrack;
+    private bool useLeftTrack = true;
     private float distancePercentage = 0f;
     private float activationRadius = 0.5f;
     [Header("Objects Set Active Once Point Reached Switchable")]
