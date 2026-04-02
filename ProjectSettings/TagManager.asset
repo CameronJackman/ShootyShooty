@@ -8,6 +8,9 @@ TagManager:
   - gun
   - fist
   - cart
+  - target
+  - cutout
+  - water
   layers:
   - Default
   - TransparentFX
