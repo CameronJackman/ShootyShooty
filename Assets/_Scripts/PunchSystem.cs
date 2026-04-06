@@ -14,6 +14,7 @@ public class PunchSystem : MonoBehaviour
     private BoxCollider boxCol;
     float j = 0f;
     private GameMan gameManager;
+    bool coruStarted = false;
 
 
 
@@ -31,8 +32,12 @@ public class PunchSystem : MonoBehaviour
         if (!isTutorial)
         {
             if (isPunched)
-            {
-                StartCoroutine(punchStart());
+            {   
+                if (!coruStarted)
+                {
+                    StartCoroutine(punchStart());
+                }
+                
             }
             
         }
@@ -40,7 +45,7 @@ public class PunchSystem : MonoBehaviour
 
     private IEnumerator punchStart()
     {
-        
+        coruStarted = true;
         yield return new WaitForSeconds(randomPopupTime);
         int x = Random.Range (0, modelGameObjects.Length);
 
@@ -74,7 +79,7 @@ public class PunchSystem : MonoBehaviour
                 randomPopupTime = Random.Range(20, 80);
                 isPunched = true;
                 boxCol.enabled = false;
-                
+                coruStarted = false;
             }
         }
     }
