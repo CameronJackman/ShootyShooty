@@ -6,11 +6,14 @@ using UnityEngine;
 public class bulletScript : MonoBehaviour
 {
     private GunAudioManager audioManager;
+    private GameMan gameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindAnyObjectByType<GameMan>();
+
         audioManager = FindAnyObjectByType<GunAudioManager>();
 
         if (audioManager != null)
@@ -40,6 +43,9 @@ public class bulletScript : MonoBehaviour
             else if (collision.collider.CompareTag("target"))
             {
                 audioManager.HitButton();
+
+                gameManager.shotsHitAmt++;
+                
             }
         }
     }

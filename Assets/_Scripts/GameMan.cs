@@ -15,6 +15,8 @@ public class GameMan : MonoBehaviour
 
     [HideInInspector] public bool isVr;
 
+    public float shotsFiredAmt, shotsHitAmt;
+
 
     // Start is called before the first frame update
     void Start()

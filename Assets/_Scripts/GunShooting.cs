@@ -40,6 +40,8 @@ public class GunShooting : MonoBehaviour
             bulletRenderer.material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.4f, 1f);
             newBullet.GetComponent<Rigidbody>().AddForce(gunBarrel.transform.forward * bulletSpeed);
             Destroy(newBullet, 5f);
+
+            gameManager.shotsFiredAmt++;
         }
     }
 
