@@ -55,6 +55,9 @@ public class VRdesktopManager : MonoBehaviour
         DesktopPlayerPrefab.SetActive(false);
         vrPlayerPrefab.SetActive(true);
         gameManager.isVr = true;
+
+        
+
     }
     public void DesktopSelection()
     {

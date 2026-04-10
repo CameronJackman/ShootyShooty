@@ -20,17 +20,18 @@ public class GunShooting : MonoBehaviour
     void Start()
     {
         gameManager = FindAnyObjectByType<GameMan>();
-        
+
         //this will return as an error when playing desktop because the vr rig isnt active
         //just ignore, the game works fine with this 
         XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.activated.AddListener(x => Shoot());
-        
-        
+
+
     }
 
     public void Shoot()
     {
+
         if (bulletPrefab != null)
         {
 
